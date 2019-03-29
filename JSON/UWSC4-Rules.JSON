@@ -1,0 +1,190 @@
+[
+{ "rule": {
+            "Name": "Address Not US States : 1010",
+    "sqlwhere": [
+	"INMARKET_IN = 'N'" 
+	]	
+  }},
+  {
+  "rule": {
+            "Name":"Age Under 18 years : 1013",
+    "sqlwhere": [
+	"BUREAU_ERROR_CD = '010' OR UNDER18_IN = 'Y'"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"Recently Applied for Ollo Card : 1004",
+    "sqlwhere": [
+	"BANK_ACCT_CD = '4'"  
+]	
+  }},
+  {
+  "rule": {
+            "Name":"Absence of Bank Account : 1008",
+    "sqlwhere": [
+	"RECENT_APPL_IN = 'Yes'"
+]	
+  }},
+  {
+  "rule": {
+            "Name":"Existing Ollo Card Holder : 1005",
+    "sqlwhere": [
+	"OLLO_OPEN_ACCT_CT= 'Yes'"
+]	
+  }},
+  {
+  "rule": {
+            "Name":"Deceased : 1002",
+    "sqlwhere": [
+	"DECEASED_IN = 'Y' OR", 
+	"FICO_SCORE = 9001 OR",
+	"TU_VANTAGE_3 = 1 OR", 
+	"RISK_SCORE_1 = 1 OR",  
+	"CUST_MOD_3_FIN_SCR = 101 OR",
+	"CUST_MOD_4_FIN_SCR = 101 OR",
+	"CUST_MOD_6_FIN_SCR = 101"]   
+  }},
+  {
+  "rule": {
+            "Name":"Blocked or Frozen Credit Report : 1023",
+    "sqlwhere": [
+	"FROZEN_CREDRPT_IN = 'Y'"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"No Hit or Post Bureau Error : 1030",
+    "sqlwhere": [
+	"BUREAU_MSG_CD_LIST INCLUDES '07'  OR FICO_SCORE = 0" 
+]	
+  }},
+  {
+  "rule": {
+            "Name":"Invalid FICO 9000 or Risk Score Too Many Trades : 1056",
+    "sqlwhere": [
+	"FICO_SCORE = 9000 OR ",
+	"RISK_SCORE_1 = 9 OR ",
+	"TU_VANTAGE_3 = 9 OR ",
+	"CUST_MOD_3_FIN_SCR = 109 OR ",
+	"CUST_MOD_4_FIN_SCR = 109 OR ",
+	"CUST_MOD_6_FIN_SCR = 109 OR ",
+	"CUST_MOD_7_FIN_SCR = 109"]
+  }},
+  {
+  "rule": {
+            "Name": "Invalid FICO 9002 or LT Risk Score Limited Trades : 1031",
+    "sqlwhere": [
+	"FICO_SCORE= 9002 OR ",
+	"RISK_SCORE_1 = 4 OR ",
+	"TU_VANTAGE_3 = 4 OR ",
+	"CUST_MOD_3_FIN_SCR = 104 OR ",
+	"CUST_MOD_4_FIN_SCR = 104 OR ",
+	"CUST_MOD_6_FIN_SCR = 104 OR ",
+	"CUST_MOD_7_FIN_SCR = 104 OR ",
+	"ALL0100 = 99 OR ALL0100 = 0 OR ",
+	"ALL0100 = 00 "]
+  }},
+  {
+  "rule": {
+            "Name":"Invalid FICO = 9003 : 1031",
+    "sqlwhere": [
+	"FICO_SCORE = 9003 "
+	]
+  }},
+  {
+  "rule": {
+            "Name":"Undischarged Bankruptcy2 : 1116",
+    "sqlwhere": [
+	"(ALL9120 - ALL9121) > 0 AND ALL9220 <= 6 "
+	]
+  }},
+  {
+  "rule": {
+            "Name":"Charge-Off in last 12 months : 1017",
+    "sqlwhere": [
+	"((ALL8164 >= 0 AND ALL8164 <= 12) AND (ALL5301 > 250 AND ALL5301 < 999999991)) AND CAMPAIGNKEY=LG6"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"Currently 60+DPD OR 2+ Trades last 6 months : 1018",
+    "sqlwhere": [
+	"((ALL5045 >= 250 AND ALL5045<= 999999990) OR (ALL2356 > 1 AND ALL2356 < 91)) AND UNDRWRTE_STRAT_IN <> 8 AND CAMPAIGNKEY=LG6)"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"Total Bank Card Debt > 17000 : 1020",
+    "sqlwhere": [
+	"REH5030 > 17000"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"Total Bankcard Utilization > 100 : 1019",
+    "sqlwhere": [
+	"BCC7140 > 100 AND BCC7140 < 991"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"Total Inquiries v2 : 1057",
+    "sqlwhere": [
+	"IQT9421 > 1"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"FICO < 580 : 1028",
+    "sqlwhere": [
+	"FICO_SCORE  > 0 AND FICO_SCORE < 530 AND CAMPAIGNKEY"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"LT Risk Model Decile > 7 : 1055",
+    "sqlwhere": [
+	"???"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"LT Risk Model Decile > 10 : 1055",
+    "sqlwhere": [
+	"???"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"Ability to Pay < 400 : 1107",
+    "sqlwhere": [
+	"ATP_MAX_CREDIT_LINE < 400"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"Debt to Income : 1007",
+    "sqlwhere": [
+	"((ALL5830-MTA5830)/(TOT_INCOME/12)) > 0.4"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"Extended Fraud Alert Refer : 103",
+    "sqlwhere": [
+	"EXTEND_FRAUD_ALERT_IN = 'Y'"
+	]
+  }},
+  {
+  "rule": {
+            "Name":"IDA Score Fail DM : 1015",
+    "sqlwhere": [
+	"IDFS >= 950 OR ",
+	"(IDFS >=650 AND TFRANDOB2Y > 0) OR ",
+	"(IDFS >=650 AND TFRAA6M > 0) OR ",
+	"(IDFS >=650 AND SSNAWF3Y = 'true' OR SSNAWF3Y = 'True' OR SSNAWF3Y = 'TRUE')) OR ",
+	"(FRAUD_SHIELD_TYPE_LIST EXCLUDES '05' AND FRAUD_SHIELD_TYPE_LIST INCLUDES '25')"
+	]
+  }}
+]
