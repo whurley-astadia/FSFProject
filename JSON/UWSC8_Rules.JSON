@@ -1,0 +1,247 @@
+{
+	"rule": [
+		{
+			"name": "Address Not US States : 1010",
+			"declineRule": "1010",
+			"sqlwhere": [
+				"INMARKET_IN = 'N'"
+			]
+		},
+		
+		
+		{
+			"name": "Age Under 18 years : 1013",
+			"declineRule": "1013",
+			"sqlwhere": [
+				"BUREAU_ERROR_CD = '010' OR",
+				"UNDER18_IN = 'Y'"
+			]
+		},
+		
+		{
+			"name": "Recently Applied for Ollo Card : 1004",
+			"declineRule": "1004",
+			"sqlwhere": [
+				"BANK_ACCT_CD = '4'"
+			]
+		},
+		
+		
+		{
+			"name": "Absence of Bank Account : 1008",
+			"declineRule": "1008",
+			"sqlwhere": [
+				"RECENT_APPL_IN = 'Yes'"
+			]
+		},
+				
+		{
+			"name": "Existing Ollo Card Holder : 1005",
+			"declineRule": "1005",
+			"sqlwhere": [
+				"OLLO_OPEN_ACCT_CT = 'Yes'"
+			]
+		},
+		
+		{
+			"name": "Deceased : 1002",
+			"declineRule": "1002",
+			"sqlwhere": [
+				"DECEASED_IN = 'Y' OR",
+				"FICO_SCORE = 9001 OR",
+				"TU_VANTAGE_3 = 1 OR",
+				"RISK_SCORE_1 = 1 OR",
+				"CUST_MOD_3_FIN_SCR = 101 OR",
+				"CUST_MOD_4_FIN_SCR = 101 OR",
+				"CUST_MOD_6_FIN_SCR = 101 OR",
+				"CUST_MOD_7_FIN_SCR = 101"
+			]
+		},
+
+		{
+			"name": "Blocked or Frozen Credit Report - TU : 1023",
+			"declineRule": "1023",
+			"sqlwhere": [
+				"((s207a >=0 AND s207a < 999) AND FROZEN_CREDRPT_IN ='Y' AND CUST_MOD_7_FIN_SCR > 13 AND CUST_MOD_7_FIN_SCR <100 AND TU_STATUS = 'Y') OR",
+				"((s207a <0 OR s207a > 998) AND FROZEN_CREDRPT_IN ='Y' AND CUST_MOD_7_FIN_SCR> 10 AND CUST_MOD_7_FIN_SCR <100 AND TU_STATUS= 'Y') OR",
+				"FROZEN_CREDRPT_IN ='Y' AND",
+				"TU_STATUS = 'E'"
+			]
+		},
+			
+		{
+			"name": "No Hit or Post Bureau Error - TU : 1030",
+			"declineRule": "1030",
+			"sqlwhere": [
+				"TU_STATUS = 'N'"
+			]
+		},
+		
+		{
+			"name": "Invalid FICO 9000 or Risk Score Too Many Trades : 1056",
+			"declineRule": "1056",
+			"sqlwhere": [
+				"FICO_SCORE = 9000 OR",
+				"RISK_SCORE_1 = 9 OR",
+				"TU_VANTAGE_3 = 9 OR",				
+				"CUST_MOD_3_FIN_SCR = 109 OR",
+				"CUST_MOD_4_FIN_SCR = 109 OR",
+				"CUST_MOD_6_FIN_SCR = 109 OR",
+				"CUST_MOD_7_FIN_SCR = 109"
+			]
+		},	
+
+		{
+			"name": "Invalid FICO 9002 or LT Risk Score Limited Trades : 1131",
+			"declineRule": "1131",
+			"sqlwhere": [
+				"FICO_SCORE = 9002 OR",
+				"RISK_SCORE_1 = 4 OR",
+				"TU_VANTAGE_3 = 4 OR",				
+				"CUST_MOD_3_FIN_SCR = 104 OR",
+				"CUST_MOD_4_FIN_SCR = 104 OR",
+				"CUST_MOD_6_FIN_SCR = 104 OR",
+				"CUST_MOD_7_FIN_SCR = 104 OR",
+				"ALL0100 = 99 OR",
+				"ALL0100 = 0 OR",
+				"ALL0100 = 00" 
+			]
+		},	
+
+	
+		{
+			"name": "Address Correctional Institution : 1001",
+			"declineRule": "1001",
+			"sqlwhere": [
+				"App.Address Correctional Institution = 'Y'"
+			]
+		},
+
+		{
+			"name": "Time Since Bankruptcy - TU : 1116",
+			"declineRule": "1116",
+			"sqlwhere": [
+				"s207a >=0 AND",
+				"s207a <=6 AND",
+				"TU_STATUS = 'Y'"
+			]
+		},
+		
+		{
+			"name": "Charge-Off in last 12 months - TU : 1017",
+			"declineRule": "1017",
+			"sqlwhere": [
+				"co06s>= 250 AND TU_STATUS = 'Y'"
+			]
+		},
+
+		{
+			"name": "Currently 60+DPD OR 2+ Trades last 6 months - TU : 1018",
+			"declineRule": "1018",
+			"sqlwhere": [
+				"tk0901 >= 250 OR",
+				"scrg063 > 1 AND",
+				"TU_STATUS = 'Y'"
+			]
+		},
+
+		{
+			"name": "Total Bankcard Debt > 13000 - TU : 1120",
+			"declineRule": "1120",
+			"sqlwhere": [
+				"(rvlr03 > 13000 OR bc101s > 13000) AND",
+				"TU_STATUS = 'Y'"
+			]
+		},
+
+		{
+			"name": "Total Bankcard Inquiry last 6 months > 6 - TU : 1019",
+			"declineRule": "1019",
+			"sqlwhere": [
+				"BKUTIL > 100 AND",
+				"TU_STATUS = 'Y'"
+			]
+		},
+
+		{
+			"name": "Total Bankcard Inquiry last 6 months > 6 - TU : 1057",
+			"declineRule": "1057",
+			"sqlwhere": [
+				"G980S > 6 AND",
+				"TU_STATUS = 'Y'"
+			]
+		},
+
+		{
+			"name": "Digital PBK CM3 & CM7 : 1062",
+			"declineRule": "1062",
+			"sqlwhere": [
+				"(s207a >=0 AND s207a <999 AND TU_STATUS = 'Y') AND",
+				"(CUST_MOD_3_FIN_SCR  >8 AND CUST_MOD_3_FIN_SCR <100) AND",
+				"(CUST_MOD_7_FIN_SCR >10 AND CUST_MOD_7_FIN_SCR <100) AND",
+				"CUST_MOD_3_FIN_SCR_RANKED_AR[1] <> ''"
+			]
+		},
+		
+		{
+			"name": "Digital Other CM3 & CM7 : 1062",
+			"declineRule": "1062",
+			"sqlwhere": [
+				"(s207a >=0 AND s207a <999 AND TU_STATUS = 'Y') AND",
+				"(CUST_MOD_3_FIN_SCR  >8 AND CUST_MOD_3_FIN_SCR <100) AND",
+				"(CUST_MOD_7_FIN_SCR >10 AND CUST_MOD_7_FIN_SCR <100) AND",
+				"CUST_MOD_3_FIN_SCR_RANKED_AR[1] <> ''"
+			]
+		},
+
+		{
+			"name": "'Digital Thin CM3 & CM7 : 1062",
+			"declineRule": "1062",
+			"sqlwhere": [
+				"(at01s<=4 OR at20s<=24 AND TU_STATUS = 'Y') AND",
+				"(CUST_MOD_3_FIN_SCR  >13 AND CUST_MOD_3_FIN_SCR <100) AND",
+				"(CUST_MOD_7_FIN_SCR >13 AND CUST_MOD_7_FIN_SCR <100) AND",
+				"CUST_MOD_3_FIN_SCR_RANKED_AR[1] <> ''"
+			]
+		},
+
+		{
+			"name": "Ability to Pay < 400 : 1107",
+			"declineRule": "1107",
+			"sqlwhere": [
+				"ATP_MAX_CREDIT_LINE< 400"
+			]
+		},
+
+
+		{
+			"name": "DEBT TO INCOME : 1007",
+			"declineRule": "1007",
+			"sqlwhere": [
+				"(ALL5830-MTA5830)/(TOT_INCOME/12)  >0.4"
+			]
+		},
+
+		{
+			"name": "Extended Fraud Alert Refer : 103",
+			"declineRule": "103",
+			"sqlwhere": [
+				"EXTEND_FRAUD_ALERT_IN = 'Y'"
+			]
+		},
+		
+		{
+			"name": "IDA Score Fail DM : 1015",
+			"declineRule": "1015",
+			"sqlwhere": [
+				"IDFS >= 950 OR",
+				"(IDFS >=650 AND TFRANDOB2Y > 0) OR",
+				"(IDFS >=650 AND TFRAA6M > 0) OR",
+				"((IDFS >=650 AND (SSNAWF3Y = 'true' OR SSNAWF3Y = 'True' OR SSNAWF3Y = 'TRUE')) OR",
+				"(FRAUD_SHIELD_TYPE_LIST EXCLUDES '05' AND FRAUD_SHIELD_TYPE_LIST INCLUDES '25')"
+			]
+		},
+		
+
+		]
+}
