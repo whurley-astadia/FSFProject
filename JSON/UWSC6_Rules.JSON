@@ -48,13 +48,13 @@
 			"declineRule": "1002",
 			"sqlwhere": [
 				"DECEASED_IN = 'Y' OR",
-				"FICO_SCORE = 9001 OR",
-				"TU_VANTAGE_3 = 1 OR",
-				"RISK_SCORE_1 = 1 OR",
-				"CUST_MOD_3_FIN_SCR = 101 OR",
-				"CUST_MOD_4_FIN_SCR = 101 OR",
-				"CUST_MOD_6_FIN_SCR = 101 OR",
-				"CUST_MOD_7_FIN_SCR = 101"
+				"FICO_SCORE = '9001' OR",
+				"TU_VANTAGE_3 = '1' OR",
+				"RISK_SCORE_1 = '1' OR",
+				"CUST_MOD_3_FIN_SCR = '101' OR",
+				"CUST_MOD_4_FIN_SCR = '101' OR",
+				"CUST_MOD_6_FIN_SCR = '101' OR",
+				"CUST_MOD_7_FIN_SCR = '101'"
 			]
 		},
 
@@ -66,26 +66,26 @@
 			]
 		},
 			
-		{
-			"name": "No Hit or Post Bureau Error : 1030",
-			"declineRule": "1030",
-			"sqlwhere": [
-				"BUREAU_MSG_CD_LIST INCLUDES '07' OR",
-				"FICO_SCORE = 0 "
-			]
-		},
-		
+		//{
+		//	"name": "No Hit or Post Bureau Error : 1030",
+		//	"declineRule": "1030",
+		//	"sqlwhere": [
+		//		"BUREAU_MSG_CD_LIST INCLUDES '07' OR",
+		//		"FICO_SCORE = 0 "
+		//	]
+		//},
+		//
 		{
 			"name": "Invalid FICO 9000 or Risk Score Too Many Trades : 1056",
 			"declineRule": "1056",
 			"sqlwhere": [
-				"FICO_SCORE = 9000 OR",
-				"RISK_SCORE_1 = 9 OR",
-				"TU_VANTAGE_3 = 9 OR",				
-				"CUST_MOD_3_FIN_SCR = 109 OR",
-				"CUST_MOD_4_FIN_SCR = 109 OR",
-				"CUST_MOD_6_FIN_SCR = 109 OR",
-				"CUST_MOD_7_FIN_SCR = 109"
+				"FICO_SCORE = '9000' OR",
+				"RISK_SCORE_1 = '9' OR",
+				"TU_VANTAGE_3 = '9' OR",				
+				"CUST_MOD_3_FIN_SCR = '109' OR",
+				"CUST_MOD_4_FIN_SCR = '109' OR",
+				"CUST_MOD_6_FIN_SCR = '109' OR",
+				"CUST_MOD_7_FIN_SCR = '109'"
 			]
 		},	
 
@@ -93,16 +93,16 @@
 			"name": "Invalid FICO 9002 or LT Risk Score Limited Trades : 1131",
 			"declineRule": "1131",
 			"sqlwhere": [
-				"FICO_SCORE = 9002 OR",
-				"RISK_SCORE_1 = 4 OR",
-				"TU_VANTAGE_3 = 4 OR",				
-				"CUST_MOD_3_FIN_SCR = 104 OR",
-				"CUST_MOD_4_FIN_SCR = 104 OR",
-				"CUST_MOD_6_FIN_SCR = 104 OR",
-				"CUST_MOD_7_FIN_SCR = 104 OR",
-				"ALL0100 = 99 OR",
-				"ALL0100 = 0 OR",
-				"ALL0100 = 00" 
+				"FICO_SCORE = '9002' OR",
+				"RISK_SCORE_1 = '4' OR",
+				"TU_VANTAGE_3 = '4' OR",				
+				"CUST_MOD_3_FIN_SCR = '104' OR",
+				"CUST_MOD_4_FIN_SCR = '104' OR",
+				"CUST_MOD_6_FIN_SCR = '104' OR",
+				"CUST_MOD_7_FIN_SCR = '104' OR",
+				"ALL0100 = '99' OR",
+				"ALL0100 = '0' OR",
+				"ALL0100 = '00'" 
 			]
 		},	
 
@@ -132,13 +132,13 @@
 			]
 		},
 		
-		{
-			"name": "Address Correctional Institution : 1001",
-			"declineRule": "1001",
-			"sqlwhere": [
-				"App.Address Correctional Institution = 'Y'"
-			]
-		},
+		//{
+		//	"name": "Address Correctional Institution : 1001",
+		//	"declineRule": "1001",
+		//	"sqlwhere": [
+		//		"App.Address Correctional Institution = 'Y'"
+		//	]
+		//},
 
 		{
 			"name": "Undischarged Bankruptcy2 : 1116",
@@ -170,15 +170,15 @@
 			]
 		},
 
-		{
-			"name": "Total Bankcard Debt > 12000 : 1120",
-			"declineRule": "1120",
-			"sqlwhere": [
-				"CAMPAIGN_ID = '24', '25', '27' AND",
-				"CAMPAIGN_SUB_CD = '3' AND",
-				"REH5030 > 12000"
-			]
-		},
+		//{
+		//	"name": "Total Bankcard Debt > 12000 : 1120",
+		//	"declineRule": "1120",
+		//	"sqlwhere": [
+		//		"CAMPAIGN_ID = '24', '25', '27' AND",
+		//		"CAMPAIGN_SUB_CD = '3' AND",
+		//		"REH5030 > 12000"
+		//	]
+		//},
 
 		{
 			"name": "Total Bankcard Debt > 17000 : 1120",
@@ -205,62 +205,62 @@
 			]
 		},
 
-		{
-			"name": "FICO < 530 : 1028",
-			"declineRule": "1028",
-			"sqlwhere": [
-				"FICO_SCORE  > 0 AND",
-				"FICO_SCORE < 530 AND",
-				"(CAMPAIGN_ID ='25' AND CAMPAIGN_SUB_CD='5','6','7','8') OR",
-				"(CAMPAIGN_ID ='27' AND CAMPAIGN_SUB_CD='6', '7')"
-			]
-		},
+		//{
+		//	"name": "FICO < 530 : 1028",
+		//	"declineRule": "1028",
+		//	"sqlwhere": [
+		//		"FICO_SCORE  > 0 AND",
+		//		"FICO_SCORE < 530 AND",
+		//		"(CAMPAIGN_ID ='25' AND CAMPAIGN_SUB_CD='5','6','7','8') OR",
+		//		"(CAMPAIGN_ID ='27' AND CAMPAIGN_SUB_CD='6', '7')"
+		//	]
+		//},
 		
-		{
-			"name": "FICO < 580 : 1028",
-			"declineRule": "1028",
-			"sqlwhere": [
-				"FICO_SCORE  > 0 AND",
-				"FICO_SCORE < 530 AND",
-				"(CAMPAIGN_ID <>'25' AND CAMPAIGN_SUB_CD<>'5','6','7','8') OR",
-				"(CAMPAIGN_ID <>'27' AND CAMPAIGN_SUB_CD<>'6', '7')"
-			]
-		},
+		//{
+		//	"name": "FICO < 580 : 1028",
+		//	"declineRule": "1028",
+		//	"sqlwhere": [
+		//		"FICO_SCORE  > 0 AND",
+		//		"FICO_SCORE < 530 AND",
+		//		"(CAMPAIGN_ID <>'25' AND CAMPAIGN_SUB_CD<>'5','6','7','8') OR",
+		//		"(CAMPAIGN_ID <>'27' AND CAMPAIGN_SUB_CD<>'6', '7')"
+		//	]
+		//},
 
-		{
-			"name": "DM CNP & CM 3 : 1058",
-			"declineRule": "1058",
-			"sqlwhere": [
-				"CAMPAIGN_ID='26','27' AND",
-				"CAMPAIGN_SUB_CD='5' AND",
-				"CUST_MOD_3_FIN_SCR >7 AND",
-				"CUST_MOD_3_FIN_SCR <101 AND",
-				"CUST_MOD_3_FIN_SCR_RANKED_AR'[1]' <> ''"
-			]
-		},
+		//{
+		//	"name": "DM CNP & CM 3 : 1058",
+		//	"declineRule": "1058",
+		//	"sqlwhere": [
+		//		"CAMPAIGN_ID='26','27' AND",
+		//		"CAMPAIGN_SUB_CD='5' AND",
+		//		"CUST_MOD_3_FIN_SCR >7 AND",
+		//		"CUST_MOD_3_FIN_SCR <101 AND",
+		//		"CUST_MOD_3_FIN_SCR_RANKED_AR'[1]' <> ''"
+		//	]
+		//},
 
-		{
-			"name": "DM PBK & CM 3&4 : 1060",
-			"declineRule": "1060",
-			"sqlwhere": [
-				"CUST_MOD_3_FIN_SCR  >13  AND",
-				"CUST_MOD_3_FIN_SCR  <101 AND",
-				"CUST_MOD_4_FIN_SCR  >10 AND",
-				"CUST_MOD_4_FIN_SCR  <101 AND",
-				"CUST_MOD_3_FIN_SCR_RANKED_AR'[1]' <> ''"
-			]
-		},
+		//{
+		//	"name": "DM PBK & CM 3&4 : 1060",
+		//	"declineRule": "1060",
+		//	"sqlwhere": [
+		//		"CUST_MOD_3_FIN_SCR  > 13  AND",
+		//		"CUST_MOD_3_FIN_SCR  < 101 AND",
+		//		"CUST_MOD_4_FIN_SCR  > 10 AND",
+		//		"CUST_MOD_4_FIN_SCR  < 101 AND",
+		//		"CUST_MOD_3_FIN_SCR_RANKED_AR'[1]' <> ''"
+		//	]
+		//},
 
-		{
-			"name": "DM PBK & CM 3 : 1058",
-			"declineRule": "1058",
-			"sqlwhere": [
-				"CUST_MOD_3_FIN_SCR  >13 AND",
-				"CUST_MOD_3_FIN_SCR  <101 AND",
-				"CUST_MOD_4_FIN_SCR  =0 AND",
-				"CUST_MOD_3_FIN_SCR_RANKED_AR'[1]' <> ''"
-			]
-		},
+		//{
+		//	"name": "DM PBK & CM 3 : 1058",
+		//	"declineRule": "1058",
+		//	"sqlwhere": [
+		//		"CUST_MOD_3_FIN_SCR  >13 AND",
+		//		"CUST_MOD_3_FIN_SCR  <101 AND",
+		//		"CUST_MOD_4_FIN_SCR  =0 AND",
+		//		"CUST_MOD_3_FIN_SCR_RANKED_AR'[1]' <> ''"
+		//	]
+		//},
 
 		{
 			"name": "Ability to Pay < 400 : 1107",
@@ -270,20 +270,20 @@
 			]
 		},
 
-		{
-			"name": "ABILITY TO PAY DOUBLE LINE : 1107",
-			"declineRule": "1107",
-			"sqlwhere": [
-				"((CAMPAGIN_ID = '28' AND CAMPAIGN_SUB_CD= '1','2') AND Results.Ability to Pay < 1000) OR",
-				"((CAMPAGIN_ID = '28' AND CAMPAIGN_SUB_CD= '2','4') AND Results.Ability to Pay <2000)"
-			]
-		},
+		//{
+		//	"name": "ABILITY TO PAY DOUBLE LINE : 1107",
+		//	"declineRule": "1107",
+		//	"sqlwhere": [
+		//		"((CAMPAGIN_ID = '28' AND CAMPAIGN_SUB_CD= '1','2') AND Results.Ability to Pay < 1000) OR",
+		//		"((CAMPAGIN_ID = '28' AND CAMPAIGN_SUB_CD= '2','4') AND Results.Ability to Pay <2000)"
+		//	]
+		//},
 
 		{
 			"name": "DEBT TO INCOME : 1007",
 			"declineRule": "1007",
 			"sqlwhere": [
-				"(ALL5830-MTA5830)/(TOT_INCOME/12)  >0.4"
+				"(ALL5830-MTA5830)/(TOT_INCOME/12)  > 0.4"
 			]
 		},
 
@@ -295,17 +295,17 @@
 			]
 		},
 		
-		{
-			"name": "IDA Score Fail DM : 1015",
-			"declineRule": "1015",
-			"sqlwhere": [
-				"IDFS >= 950 OR",
-				"(IDFS >=650 AND TFRANDOB2Y > 0) OR",
-				"(IDFS >=650 AND TFRAA6M > 0) OR",
-				"((IDFS >=650 AND (SSNAWF3Y = 'true' OR SSNAWF3Y = 'True' OR SSNAWF3Y = 'TRUE')) OR",
-				"(FRAUD_SHIELD_TYPE_LIST EXCLUDES '05' AND FRAUD_SHIELD_TYPE_LIST INCLUDES '25')"
-			]
-		},
+		//{
+		//	"name": "IDA Score Fail DM : 1015",
+		//	"declineRule": "1015",
+		//	"sqlwhere": [
+		//		"IDFS >= 950 OR",
+		//		"(IDFS >=650 AND TFRANDOB2Y > 0) OR",
+		//		"(IDFS >=650 AND TFRAA6M > 0) OR",
+		//		"((IDFS >=650 AND (SSNAWF3Y = 'true' OR SSNAWF3Y = 'True' OR SSNAWF3Y = 'TRUE')) OR",
+		//		"(FRAUD_SHIELD_TYPE_LIST EXCLUDES '05' AND FRAUD_SHIELD_TYPE_LIST INCLUDES '25')"
+		//	]
+		//},
 		
 
 		]
