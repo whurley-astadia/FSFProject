@@ -65,13 +65,13 @@
 				"FROZEN_CREDRPT_IN = 'Y'"
 			]
 		},
-			
+		// INCLUDES is not a Snowflake command	
 		//{
 		//	"name": "No Hit or Post Bureau Error : 1030",
 		//	"declineRule": "1030",
 		//	"sqlwhere": [
 		//		"BUREAU_MSG_CD_LIST INCLUDES '07' OR",
-		//		"'FICO_SCORE' = 0 "
+		//		"FICO_SCORE = 0 "
 		//	]
 		//},
 		
@@ -89,22 +89,22 @@
 			]
 		},	
 
-		//{
-		//	"name": "Invalid FICO 9002 or LT Risk Score Limited Trades : 1131",
-		//	"declineRule": "1131",
-		//	"sqlwhere": [
-		//		"FICO_SCORE = '9002' OR",
-		//		"RISK_SCORE_1 = '4' OR",
-		//		"TU_VANTAGE_3 = '4' OR",				
-		//		"CUST_MOD_3_FIN_SCR = '104' OR",
-		//		"CUST_MOD_4_FIN_SCR = '104' OR",
-		//		"CUST_MOD_6_FIN_SCR = '104' OR",
-		//		"CUST_MOD_7_FIN_SCR = '104' OR",
-		//		"ALL0100 = '99' OR",
-		//		"ALL0100 = '0' OR",
-		//		"ALL0100 = '00'" 
-		//	]
-		//},	
+		{
+			"name": "Invalid FICO 9002 or LT Risk Score Limited Trades : 1131",
+			"declineRule": "1131",
+			"sqlwhere": [
+				"FICO_SCORE = '9002' OR",
+				"RISK_SCORE_1 = '4' OR",
+				"TU_VANTAGE_3 = '4' OR",				
+				"CUST_MOD_3_FIN_SCR = '104' OR",
+				"CUST_MOD_4_FIN_SCR = '104' OR",
+				"CUST_MOD_6_FIN_SCR = '104' OR",
+				"CUST_MOD_7_FIN_SCR = '104' OR",
+				"ALL0100 = '99' OR",
+				"ALL0100 = '0' OR",
+				"ALL0100 = '00'" 
+			]
+		},	
 
 		{
 			"name": "Invalid FICO = 9003 : 1131",
@@ -113,6 +113,7 @@
 				"FICO_SCORE = 9003"
 			]
 		},
+		// Not SQL
 		//{
 		//	"name": "Address Correctional Institution : 1001",
 		//	"declineRule": "1001",
@@ -122,10 +123,12 @@
 		//},
 
 		{
+		    // need to fix trailing ')' 
 			"name": "Undischarged Bankruptcy2 : 1116",
 			"declineRule": "1116",
 			"sqlwhere": [
-				"(ALL9120 - ALL9121) > 0 AND",
+				"(ALL9120 - ",
+				"ALL9121) > 0 AND",
 				"ALL9220 <= 6"
 			]
 		},
@@ -134,9 +137,15 @@
 			"name": "Charge-Off in last 12 months : 1017",
 			"declineRule": "1017",
 			"sqlwhere": [
-				"((ALL8164 >= 0 AND ALL8164 <= 12) AND (ALL5301 > 250 AND ALL5301 < 999999991)) AND",
-				"(CAMPAIGN_ID <> '25' AND CAMPAIGN_SUB_CD <>'6' or CAMPAIGN_SUB_CD <> '8') OR",
-				"(CAMPAIGN_ID <>'27' AND CAMPAIGN_SUB_CD<>'7')"
+				"((ALL8164 >= 0 AND",
+				"ALL8164 <= 12) AND",
+				"(ALL5301 > 250 AND",
+				"ALL5301 < 999999991)) AND",
+				"(CAMPAIGN_ID <> '25' AND",
+				"CAMPAIGN_SUB_CD <>'6' OR",
+				"CAMPAIGN_SUB_CD <> '8') OR",
+				"(CAMPAIGN_ID <> '27' AND",
+				"CAMPAIGN_SUB_CD <> '7')"
 			]
 		},
 
@@ -144,10 +153,16 @@
 			"name": "Currently 60+DPD OR 2+ Trades last 6 months : 1018",
 			"declineRule": "1018",
 			"sqlwhere": [
-				"((ALL5045 >= 250 AND ALL5045<= 999999990) OR (ALL2356 > 1 AND ALL2356 < 91)) AND",
-				"UNDRWRTE_STRAT_IN <>8 AND",
-				"(CAMPAIGN_ID <>'25' AND CAMPAIGN_SUB_CD<>'6' or CAMPAIGN_SUB_CD <> '8') OR",
-				"(CAMPAIGN_ID <>'27' AND CAMPAIGN_SUB_CD<>'7')"
+				"((ALL5045 >= 250 AND",
+				"ALL5045 <= 999999990) OR (",
+				"ALL2356 > 1 AND",
+				"ALL2356 < 91)) AND",
+				"UNDRWRTE_STRAT_IN <> 8 AND (",
+				"CAMPAIGN_ID <>'25' AND",
+				"CAMPAIGN_SUB_CD <>'6' OR",
+				"CAMPAIGN_SUB_CD <> '8') OR (",
+				"CAMPAIGN_ID <>'27' AND",
+				"CAMPAIGN_SUB_CD <> '7')"
 			]
 		},
 
@@ -177,17 +192,20 @@
 			]
 		},
 
-		//		{
-		//	"name": "FICO < 580 : 1028",
-		//	"declineRule": "1028",
-		//	"sqlwhere": [
-		//		"FICO_SCORE  > 0 AND",
-		//		"FICO_SCORE < 530 AND",
-		//		"(CAMPAIGN_ID <>'25' AND CAMPAIGN_SUB_CD<>'5','6','7','8') OR",
-		//		"(CAMPAIGN_ID <>'27' AND CAMPAIGN_SUB_CD<>'6', '7')"
-		//	]
-		//},
+				{
+			"name": "FICO < 580 : 1028",
+			"declineRule": "1028",
+			"sqlwhere": [
+				"FICO_SCORE  > 0 AND",
+				"FICO_SCORE < 530 AND",
+				"(CAMPAIGN_ID <> '25' AND",
+				"CAMPAIGN_SUB_CD <> '5','6','7','8') OR",
+				"(CAMPAIGN_ID <> '27' AND",
+				"CAMPAIGN_SUB_CD <> '6', '7')"
+			]
+		},
 		
+		// Not SQL
 		//{
 		//	"name": "LT Risk Model Decile > 7 : 1055",
 		//	"declineRule": "1055",
@@ -197,7 +215,7 @@
 		//	]
 		//},
 		
-				
+		// Not SQL		
 		//{
 		//	"name": "LT Risk Model Decile > 10 : 1055",
 		//	"declineRule": "1055",
@@ -208,21 +226,23 @@
 		//	]
 		//},
 		
-		//{
-		//	"name": "Ability to Pay < 400 : 1107",
-		//	"declineRule": "1107",
-		//	"sqlwhere": [
-		//		"ATP_MAX_CREDIT_LINE< 400"
-		//	]
-		//},
+		{
+			"name": "Ability to Pay < 400 : 1107",
+			"declineRule": "1107",
+			"sqlwhere": [
+				"ATP_MAX_CREDIT_LINE < 400"
+			]
+		},
 
-		//		{
-		//	"name": "DEBT TO INCOME : 1007",
-		//	"declineRule": "1007",
-		//	"sqlwhere": [
-		//		"(ALL5830-MTA5830)/(TOT_INCOME/12)  >0.4"
-		//	]
-		//},
+				{
+			"name": "DEBT TO INCOME : 1007",
+			"declineRule": "1007",
+			"sqlwhere": [
+				"(ALL5830 -",
+				"MTA5830) /",
+				"(TOT_INCOME / 12)  > 0.4"
+			]
+		},
 
 		{
 			"name": "Extended Fraud Alert Refer : 103",
@@ -230,19 +250,26 @@
 			"sqlwhere": [
 				"EXTEND_FRAUD_ALERT_IN = 'Y'"
 			]
-		},
+		}
 		
-	//	{
-	//		"name": "IDA Score Fail DM : 1015",
-	//		"declineRule": "1015",
-	//		"sqlwhere": [
-	//			"IDFS >= 950 OR",
-	//			"(IDFS >=650 AND TFRANDOB2Y > 0) OR",
-	//			"(IDFS >=650 AND TFRAA6M > 0) OR",
-	//			"((IDFS >=650 AND (SSNAWF3Y = 'true' OR SSNAWF3Y = 'True' OR SSNAWF3Y = 'TRUE')) OR",
-	//			"(FRAUD_SHIELD_TYPE_LIST EXCLUDES '05' AND FRAUD_SHIELD_TYPE_LIST INCLUDES '25')"
-	//		]
-	//	},
+		//{ 
+			//INCLUDES is not a Snowflake command
+			//"name": "IDA Score Fail DM : 1015",
+			//"declineRule": "1015",
+			//"sqlwhere": [
+			//	"IDFS >= 950 OR",
+			//	"(IDFS >= 650 AND",
+			//	"TFRANDOB2Y > 0) OR",
+			//	"(IDFS >= 650 AND",
+			//	"TFRAA6M > 0) OR",
+			//	"((IDFS >= 650 AND",
+			//	"(SSNAWF3Y = 'true' OR",
+			//	"SSNAWF3Y = 'True' OR",
+			//	"SSNAWF3Y = 'TRUE')) OR",
+			//	"(FRAUD_SHIELD_TYPE_LIST EXCLUDES '05' AND",
+			//	"FRAUD_SHIELD_TYPE_LIST INCLUDES '25')"
+			//]
+		//}
 		
 
 
